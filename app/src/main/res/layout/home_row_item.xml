@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="rowData"
+            type="com.muhammed.mvvm_hilt_coinapp.data.model.HomeModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100sp"
+
+            >
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/coinImage"
+                imageUrl="@{rowData.image}"
+                android:layout_width="50sp"
+                android:layout_height="50sp"
+                android:layout_margin="20sp"
+               ></de.hdodenhof.circleimageview.CircleImageView>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="@{rowData.name}"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        tools:text="Bitcoin"></TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10sp"
+                        android:autoSizeMaxTextSize="14sp"
+                        android:autoSizeMinTextSize="14sp"
+                        android:text="@{rowData.symbol}"
+                        android:textColor="@color/gray"
+                        android:textSize="14sp"
+                        tools:text="Muhammed Göksu"></TextView>
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="24sp"
+                android:layout_marginRight="20sp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text='@{"$ " + rowData.current_price.toString()}'
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        tools:text="450.933"
+
+                        ></TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10sp"
+                        android:autoSizeMaxTextSize="14sp"
+                        android:autoSizeMinTextSize="14sp"
+                        android:maxLength="5"
+                        android:text='@{rowData.price_change_percentage_24h_in_currency.toString()+ " %"}'
+                        android:textColor="@color/gray"
+                        android:textSize="14sp"
+                        tools:text="4.65%"></TextView>
+
+                </LinearLayout>
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

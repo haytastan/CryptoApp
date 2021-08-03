@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="detailData"
+            type="com.muhammed.mvvm_hilt_coinapp.ui.view.itemviewstate.CoinItemViewState" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.view.fragment.DetailFragment"
+        >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+       >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            >
+
+            <ImageButton
+                android:layout_width="50sp"
+                android:layout_height="50sp"
+                android:layout_margin="20sp"
+                android:backgroundTint="@color/lightYellow"
+                android:src="@drawable/ic_launcher_back_foreground"></ImageButton>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@{detailData.name}"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                tools:text="Etherenum"></TextView>
+
+            <ImageButton
+                android:layout_width="50sp"
+                android:layout_height="50sp"
+                android:id="@+id/favoritesButton"
+                android:layout_alignParentRight="true"
+                android:layout_margin="20sp"
+                android:backgroundTint="@color/lightYellow"
+                android:src="@drawable/ic_launcher_star_empty_foreground"></ImageButton>
+
+        </RelativeLayout>
+
+        <ImageView
+            imageUrl="@{detailData.imageUrl}"
+            android:layout_width="70sp"
+            android:layout_height="70sp"
+            android:layout_gravity="center"
+            android:layout_margin="20sp"
+            android:src="@mipmap/ic_launcher"></ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@{detailData.symbol}"
+            android:textColor="@color/gray"
+            android:textSize="14sp"
+            tools:text="ETH"></TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20sp"
+            android:id="@+id/detailCoinPrice"
+            android:text='@{"$ " +detailData.currentPrice}'
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            tools:text="$ 250.45"></TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text='@{detailData.priceChange}'
+            android:textColor="@color/gray"
+            android:textSize="16sp"
+            tools:text="4.65 %"
+
+            ></TextView>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20sp"
+            android:background="@color/yellow"
+            android:text="Buy Ethereum"
+            android:textColor="@color/white"
+
+            ></androidx.appcompat.widget.AppCompatButton>
+
+    </LinearLayout>
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/detaiProgress"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            ></ProgressBar>
+
+    </RelativeLayout>
+</layout>
