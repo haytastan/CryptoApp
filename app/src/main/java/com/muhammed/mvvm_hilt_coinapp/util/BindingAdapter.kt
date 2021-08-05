@@ -9,12 +9,12 @@ import com.bumptech.glide.Glide
 import com.muhammed.mvvm_hilt_coinapp.R
 
 @BindingAdapter("imageUrl")
-fun loadImage(view: ImageView, url:String?) {
+fun loadImage(view: ImageView, url: String?) {
     Glide.with(view).load(url).into(view)
 }
 
 @BindingAdapter("coinBackGround")
-fun loadBackGround(textView: TextView,number: String?) {
+fun loadBackGround(textView: TextView, number: String?) {
     val firstIndex = number?.substring(0, 1)
     if (firstIndex == "-") {
         DrawableCompat.setTint(

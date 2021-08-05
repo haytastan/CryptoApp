@@ -1,7 +1,9 @@
 package com.muhammed.mvvm_hilt_coinapp.ui.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
+import com.muhammed.mvvm_hilt_coinapp.data.model.DetailModel
 import com.muhammed.mvvm_hilt_coinapp.data.repository.CoinRepository
 import com.muhammed.mvvm_hilt_coinapp.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -10,7 +12,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val coinRepository: CoinRepository): ViewModel() {
+    private val coinRepository: CoinRepository
+) : ViewModel() {
+
+    val getFavoritesCoin: LiveData<List<DetailModel>> = coinRepository.getFavoritesCoin()
 
     fun getCoinList() = liveData(Dispatchers.IO) {
         emit(Resource.loading(null))

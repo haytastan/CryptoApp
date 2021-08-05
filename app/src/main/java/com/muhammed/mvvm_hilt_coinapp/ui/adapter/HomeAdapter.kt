@@ -5,12 +5,15 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.muhammed.mvvm_hilt_coinapp.R
+import com.muhammed.mvvm_hilt_coinapp.data.model.DetailModel
 import com.muhammed.mvvm_hilt_coinapp.data.model.HomeModel
 import com.muhammed.mvvm_hilt_coinapp.databinding.HomeRowItemBinding
 
-class HomeAdapter: RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
+class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
     var dataModel = ArrayList<HomeModel>()
     var data: MutableList<HomeModel> = mutableListOf()
+
+    lateinit var roomData: List<DetailModel>
 
     init {
         data = dataModel
@@ -21,7 +24,7 @@ class HomeAdapter: RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
         this.coinClick = onClick
     }
 
-    class HomeViewHolder(val binding: HomeRowItemBinding): RecyclerView.ViewHolder(
+    class HomeViewHolder(val binding: HomeRowItemBinding) : RecyclerView.ViewHolder(
         binding.root
     ) {
         fun bind(homeModel: HomeModel, coinClick: (HomeModel) -> Unit) {
@@ -34,18 +37,24 @@ class HomeAdapter: RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
-        val binding : HomeRowItemBinding = DataBindingUtil.inflate(
-            LayoutInflater.from(parent.context), R.layout.home_row_item,parent,false)
+        val binding: HomeRowItemBinding = DataBindingUtil.inflate(
+            LayoutInflater.from(parent.context), R.layout.home_row_item, parent, false
+        )
         return HomeViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
-        holder.bind(data[position],coinClick)
+        holder.bind(data[position], coinClick)
     }
 
     override fun getItemCount(): Int {
         return data.size
     }
 
+    fun refreshData() {
+
+        notifyDataSetChanged()
+
+    }
 
 }

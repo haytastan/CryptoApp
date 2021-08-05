@@ -5,8 +5,8 @@
     <data>
 
         <variable
-            name="rowData"
-            type="com.muhammed.mvvm_hilt_coinapp.data.model.HomeModel" />
+            name="roomData"
+            type="com.muhammed.mvvm_hilt_coinapp.data.model.DetailModel" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -23,11 +23,10 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/coinImage"
-                imageUrl="@{rowData.image}"
+                imageUrl="@{roomData.image.large}"
                 android:layout_width="50sp"
                 android:layout_height="50sp"
-                android:layout_margin="20sp"
-               ></de.hdodenhof.circleimageview.CircleImageView>
+                android:layout_margin="20sp"></de.hdodenhof.circleimageview.CircleImageView>
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -46,7 +45,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:text="@{rowData.name}"
+                        android:text="@{roomData.name}"
                         android:textColor="@color/black"
                         android:textSize="18sp"
                         tools:text="Bitcoin"></TextView>
@@ -57,7 +56,7 @@
                         android:layout_marginTop="10sp"
                         android:autoSizeMaxTextSize="14sp"
                         android:autoSizeMinTextSize="14sp"
-                        android:text="@{rowData.symbol.toUpperCase()}"
+                        android:text="@{roomData.symbol}"
                         android:textColor="@color/gray"
                         android:textSize="14sp"
                         tools:text="Muhammed Göksu"></TextView>
@@ -84,7 +83,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:text='@{"$ " + rowData.current_price.toString()}'
+                        android:text='@{roomData.market_data.current_price.type.toString()}'
                         android:textColor="@color/black"
                         android:textSize="18sp"
                         tools:text="450.933"
@@ -98,7 +97,7 @@
                         android:autoSizeMaxTextSize="14sp"
                         android:autoSizeMinTextSize="14sp"
                         android:maxLength="5"
-                        android:text='@{rowData.price_change_percentage_24h_in_currency.toString()+ " %"}'
+                        android:text='@{roomData.market_data.price_change_percentage_24h.toString()}'
                         android:textColor="@color/gray"
                         android:textSize="14sp"
                         tools:text="4.65%"></TextView>

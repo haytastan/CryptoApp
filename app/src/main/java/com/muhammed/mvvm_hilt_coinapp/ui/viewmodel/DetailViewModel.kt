@@ -15,17 +15,18 @@ import javax.inject.Inject
 class DetailViewModel @Inject constructor(private val coinRepository: CoinRepository) :
     ViewModel() {
 
-//    fun insertCoin(detailModel: List<DetailModel>) {
-//        viewModelScope.launch {
-//            coinRepository.insertCoin(detailModel)
-//        }
-//    }
-//
-//    fun deleteCoin(detailModel: List<DetailModel>) {
-//        viewModelScope.launch {
-//            coinRepository.deleteCoin(detailModel)
-//        }
-//    }
+
+    fun insertCoin(detailModel: DetailModel) {
+        viewModelScope.launch {
+            coinRepository.insertCoin(detailModel)
+        }
+    }
+
+    fun deleteCoin(detailModel: DetailModel) {
+        viewModelScope.launch {
+            coinRepository.deleteCoin(detailModel)
+        }
+    }
 
     var id = ""
     fun getCoinDetail() = liveData(Dispatchers.IO) {

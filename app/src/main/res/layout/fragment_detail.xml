@@ -12,107 +12,110 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.view.fragment.DetailFragment"
-        >
+        tools:context=".ui.view.fragment.DetailFragment">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-       >
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-            <ImageButton
-                android:layout_width="50sp"
-                android:layout_height="50sp"
+                >
+
+                <ImageButton
+                    android:layout_width="50sp"
+                    android:layout_height="50sp"
+                    android:id="@+id/detailBackButton"
+                    android:layout_margin="20sp"
+                    android:backgroundTint="@color/lightYellow"
+                    android:src="@drawable/ic_launcher_back_foreground"></ImageButton>
+
+                <TextView
+                    android:id="@+id/detailCoinName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@{detailData.name}"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    tools:text="Etherenum"></TextView>
+
+                <ImageButton
+                    android:id="@+id/favoritesButton"
+                    android:layout_width="50sp"
+                    android:layout_height="50sp"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="20sp"
+                    android:backgroundTint="@color/lightYellow"
+                    android:src="@drawable/ic_launcher_star_empty_foreground"></ImageButton>
+
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/detailCoinImage"
+                imageUrl="@{detailData.imageUrl}"
+                android:layout_width="70sp"
+                android:layout_height="70sp"
+                android:layout_gravity="center"
                 android:layout_margin="20sp"
-                android:backgroundTint="@color/lightYellow"
-                android:src="@drawable/ic_launcher_back_foreground"></ImageButton>
+                android:src="@mipmap/ic_launcher"></ImageView>
 
             <TextView
+                android:id="@+id/detailCoinSymbol"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="@{detailData.name}"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                tools:text="Etherenum"></TextView>
+                android:layout_gravity="center"
+                android:text="@{detailData.symbol.toUpperCase()}"
+                android:textColor="@color/gray"
+                android:textSize="14sp"
+                tools:text="ETH"></TextView>
 
-            <ImageButton
-                android:layout_width="50sp"
-                android:layout_height="50sp"
-                android:id="@+id/favoritesButton"
-                android:layout_alignParentRight="true"
+            <TextView
+                android:id="@+id/detailCoinPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_margin="20sp"
-                android:backgroundTint="@color/lightYellow"
-                android:src="@drawable/ic_launcher_star_empty_foreground"></ImageButton>
+                android:text='@{"$ " +detailData.currentPrice}'
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                tools:text="$ 250.45"></TextView>
 
-        </RelativeLayout>
+            <TextView
+                android:id="@+id/detailPriceChange24h"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text='@{detailData.priceChange}'
+                android:textColor="@color/gray"
+                android:textSize="16sp"
+                tools:text="4.65 %"
 
-        <ImageView
-            imageUrl="@{detailData.imageUrl}"
-            android:layout_width="70sp"
-            android:layout_height="70sp"
-            android:layout_gravity="center"
-            android:layout_margin="20sp"
-            android:src="@mipmap/ic_launcher"></ImageView>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@{detailData.symbol}"
-            android:textColor="@color/gray"
-            android:textSize="14sp"
-            tools:text="ETH"></TextView>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="20sp"
-            android:id="@+id/detailCoinPrice"
-            android:text='@{"$ " +detailData.currentPrice}'
-            android:textColor="@color/black"
-            android:textSize="25sp"
-            tools:text="$ 250.45"></TextView>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text='@{detailData.priceChange}'
-            android:textColor="@color/gray"
-            android:textSize="16sp"
-            tools:text="4.65 %"
-
-            ></TextView>
+                ></TextView>
 
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20sp"
-            android:background="@color/yellow"
-            android:text="Buy Ethereum"
-            android:textColor="@color/white"
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20sp"
+                android:background="@color/yellow"
+                android:text="Buy Ethereum"
+                android:textColor="@color/white"
 
-            ></androidx.appcompat.widget.AppCompatButton>
+                ></androidx.appcompat.widget.AppCompatButton>
 
-    </LinearLayout>
+        </LinearLayout>
 
         <ProgressBar
+            android:id="@+id/detaiProgress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/detaiProgress"
             android:layout_centerInParent="true"
-            android:visibility="gone"
-            ></ProgressBar>
+            android:visibility="gone"></ProgressBar>
 
     </RelativeLayout>
 </layout>
