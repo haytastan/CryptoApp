@@ -26,5 +26,4 @@ class CoinRepository @Inject constructor(
     fun getFavoritesCoin(): LiveData<List<DetailModel>> =
         coinDao.getFavoritesCoin()
 
-
 }

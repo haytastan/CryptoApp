@@ -5,15 +5,20 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.muhammed.mvvm_hilt_coinapp.R
+import com.muhammed.mvvm_hilt_coinapp.data.local.CoinDao
 import com.muhammed.mvvm_hilt_coinapp.data.model.DetailModel
+import com.muhammed.mvvm_hilt_coinapp.data.repository.CoinRepository
 import com.muhammed.mvvm_hilt_coinapp.databinding.RoomItemLayoutBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class HomeRoomAdapter: RecyclerView.Adapter<HomeRoomAdapter.HomeRoomViewHolder>() {
 
     private var favCoinList = emptyList<DetailModel>()
 
-
-    class HomeRoomViewHolder(val binding: RoomItemLayoutBinding): RecyclerView.ViewHolder(binding.root) {
+    class HomeRoomViewHolder(val binding: RoomItemLayoutBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(detailModel: DetailModel) {
             binding.roomData = detailModel
 
@@ -29,6 +34,15 @@ class HomeRoomAdapter: RecyclerView.Adapter<HomeRoomAdapter.HomeRoomViewHolder>(
 
     override fun onBindViewHolder(holder: HomeRoomViewHolder, position: Int) {
         holder.bind(favCoinList[position])
+        holder.binding.inFavorites.setOnClickListener {
+            holder.binding.inFavorites.setImageResource(R.drawable.ic_launcher_star_empty_foreground)
+
+            notifyDataSetChanged()
+//            val item = favCoinList[position]
+//            (favCoinList as MutableList).remove(item)
+//            notifyItemChanged(position)
+//            coinDao.deleteCoin(item)
+        }
     }
 
     override fun getItemCount(): Int {

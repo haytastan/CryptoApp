@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.muhammed.mvvm_hilt_coinapp.R
+import com.muhammed.mvvm_hilt_coinapp.data.local.CoinDao
 import com.muhammed.mvvm_hilt_coinapp.databinding.FragmentHomeBinding
 import com.muhammed.mvvm_hilt_coinapp.ui.adapter.HomeAdapter
 import com.muhammed.mvvm_hilt_coinapp.ui.adapter.HomeRoomAdapter
@@ -106,7 +107,7 @@ class HomeFragment : Fragment() {
     private fun refreshAllCoin() {
 
         binding.homeSwipeRefreshLayout.setOnRefreshListener {
-            homeAdapter.refreshData()
+            homeAdapter.notifyDataSetChanged()
             binding.homeSwipeRefreshLayout.isRefreshing = false
         }
     }

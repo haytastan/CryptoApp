@@ -8,12 +8,11 @@ import com.muhammed.mvvm_hilt_coinapp.R
 import com.muhammed.mvvm_hilt_coinapp.data.model.DetailModel
 import com.muhammed.mvvm_hilt_coinapp.data.model.HomeModel
 import com.muhammed.mvvm_hilt_coinapp.databinding.HomeRowItemBinding
+import com.muhammed.mvvm_hilt_coinapp.ui.view.itemviewstate.HomeItemViewState
 
 class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
     var dataModel = ArrayList<HomeModel>()
     var data: MutableList<HomeModel> = mutableListOf()
-
-    lateinit var roomData: List<DetailModel>
 
     init {
         data = dataModel
@@ -28,7 +27,7 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
         binding.root
     ) {
         fun bind(homeModel: HomeModel, coinClick: (HomeModel) -> Unit) {
-            binding.rowData = homeModel
+            binding.rowData = HomeItemViewState(homeModel)
             binding.root.setOnClickListener {
                 coinClick.invoke(homeModel)
             }
@@ -51,10 +50,5 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
         return data.size
     }
 
-    fun refreshData() {
-
-        notifyDataSetChanged()
-
-    }
 
 }

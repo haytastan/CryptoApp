@@ -3,7 +3,7 @@ package com.muhammed.mvvm_hilt_coinapp.ui.view.itemviewstate
 import com.muhammed.mvvm_hilt_coinapp.data.model.DetailModel
 import java.text.NumberFormat
 
-data class CoinItemViewState(
+data class DetaiItemViewState(
     val detailModel: DetailModel
 ) {
     fun getName() = detailModel.name

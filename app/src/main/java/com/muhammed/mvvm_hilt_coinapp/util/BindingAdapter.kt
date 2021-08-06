@@ -1,9 +1,8 @@
 package com.muhammed.mvvm_hilt_coinapp.util
 
+import android.graphics.Color
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.DrawableCompat
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.muhammed.mvvm_hilt_coinapp.R
@@ -13,18 +12,14 @@ fun loadImage(view: ImageView, url: String?) {
     Glide.with(view).load(url).into(view)
 }
 
-@BindingAdapter("coinBackGround")
-fun loadBackGround(textView: TextView, number: String?) {
+@BindingAdapter("coinBackground")
+fun loadBackground(textView: TextView, number: String?) {
     val firstIndex = number?.substring(0, 1)
     if (firstIndex == "-") {
-        DrawableCompat.setTint(
-            textView.background,
-            ContextCompat.getColor(textView.context, R.color.red)
-        )
+        textView.setTextColor(Color.parseColor("#FF0000"))
     } else {
-        DrawableCompat.setTint(
-            textView.background,
-            ContextCompat.getColor(textView.context, R.color.green)
-        )
+
+        textView.setTextColor(Color.parseColor("#00FF40"))
+
     }
 }

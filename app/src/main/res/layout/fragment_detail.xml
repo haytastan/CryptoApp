@@ -6,7 +6,7 @@
 
         <variable
             name="detailData"
-            type="com.muhammed.mvvm_hilt_coinapp.ui.view.itemviewstate.CoinItemViewState" />
+            type="com.muhammed.mvvm_hilt_coinapp.ui.view.itemviewstate.DetaiItemViewState" />
     </data>
 
     <RelativeLayout
@@ -93,6 +93,7 @@
                 android:text='@{detailData.priceChange}'
                 android:textColor="@color/gray"
                 android:textSize="16sp"
+                coinBackground="@{detailData.priceChange}"
                 tools:text="4.65 %"
 
                 ></TextView>

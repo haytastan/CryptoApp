@@ -10,6 +10,6 @@
     <color name="gray">#838080</color>
     <color name="yellow">#FF9800</color>
     <color name="lightYellow">#FFC107</color>
-    <color name="red">#FF0000</color>
-    <color name="green">#27CF09</color>
+    <color name="coin_down_red">#FF0000</color>
+    <color name="coin_up_green">#00FF40</color>
 </resources>

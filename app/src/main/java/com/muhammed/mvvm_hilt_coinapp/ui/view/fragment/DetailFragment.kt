@@ -16,7 +16,7 @@ import com.muhammed.mvvm_hilt_coinapp.data.model.DetailModel
 import com.muhammed.mvvm_hilt_coinapp.data.model.Image
 import com.muhammed.mvvm_hilt_coinapp.data.model.MarketData
 import com.muhammed.mvvm_hilt_coinapp.databinding.FragmentDetailBinding
-import com.muhammed.mvvm_hilt_coinapp.ui.view.itemviewstate.CoinItemViewState
+import com.muhammed.mvvm_hilt_coinapp.ui.view.itemviewstate.DetaiItemViewState
 import com.muhammed.mvvm_hilt_coinapp.ui.viewmodel.DetailViewModel
 import com.muhammed.mvvm_hilt_coinapp.util.Status
 import dagger.hilt.android.AndroidEntryPoint
@@ -72,9 +72,8 @@ class DetailFragment : Fragment() {
                         binding.detaiProgress.visibility = View.GONE
                         binding.detailCoinPrice.visibility = View.VISIBLE
 
-                        binding.detailData = CoinItemViewState(it)
+                        binding.detailData = DetaiItemViewState(it)
 
-//                        coinImage = it.image.toString()
                         coinImage = it.image.toString()
                         priceChange = it.market_data?.price_change_percentage_24h.toString()
                     }
@@ -106,16 +105,20 @@ class DetailFragment : Fragment() {
                 binding.favoritesButton.setImageResource(R.drawable.ic_launcher_star_empty_foreground)
 
                 CoroutineScope(Dispatchers.Main).launch {
-                    var image = Image(binding.detailCoinImage.toString())
-                    var marketData = MarketData(
-                        CurrentPrice(binding.detailCoinPrice.toString().toDoubleOrNull()),
-                        binding.detailPriceChange24h.toString().toDoubleOrNull()
+                    var coinData = DetailModel(
+                        coinId = 0,
+                        symbol = binding.detailCoinSymbol.text.toString().uppercase(),
+                        name = binding.detailCoinName.text.toString(),
+                        image = Image(large = binding.detailCoinImage.toString()),
+                        market_data = MarketData(
+                            current_price = CurrentPrice(
+                                type = binding.detailCoinPrice.text.toString().toDoubleOrNull()
+                            ),
+                            price_change_percentage_24h = binding.detailPriceChange24h.text.toString()
+                                .toDoubleOrNull()
+                        )
                     )
 
-                    var coinData = DetailModel(
-                        0, coinID, binding.detailCoinName.toString(),
-                        binding.detailCoinSymbol.toString(), image, marketData
-                    )
 
                     detailViewModel.deleteCoin(coinData)
                     Log.d(TAG, "favorilerden cikti: ${detailViewModel.deleteCoin(coinData)}")
@@ -125,12 +128,8 @@ class DetailFragment : Fragment() {
             } else {
                 Toast.makeText(context, "Favorilere eklendi", Toast.LENGTH_SHORT).show()
                 binding.favoritesButton.setImageResource(R.drawable.ic_launcher_star_full_foreground)
+
                 CoroutineScope(Dispatchers.Main).launch {
-//                    var image = Image(binding.detailCoinImage.toString())
-//                    var marketData = MarketData(
-//                        CurrentPrice(binding.detailCoinPrice.text.toString().toDoubleOrNull()),
-//                        binding.detailPriceChange24h.text.toString().toDoubleOrNull()
-//                    )
 
                     var coinData = DetailModel(
                         coinId = 0,
@@ -150,6 +149,7 @@ class DetailFragment : Fragment() {
 
 
                     detailViewModel.insertCoin(coinData)
+                    detailViewModel.deleteCoin(coinData)
 
                 }
             }
