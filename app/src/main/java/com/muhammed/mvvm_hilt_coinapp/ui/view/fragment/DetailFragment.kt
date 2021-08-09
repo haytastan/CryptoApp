@@ -119,7 +119,7 @@ class DetailFragment : Fragment() {
                         )
                     )
 
-
+                    //Coindelete işleminde delete olmuyor
                     detailViewModel.deleteCoin(coinData)
                     Log.d(TAG, "favorilerden cikti: ${detailViewModel.deleteCoin(coinData)}")
 
@@ -148,6 +148,8 @@ class DetailFragment : Fragment() {
                     Log.d(TAG, "favorilere data: ${coinData}")
 
 
+                    //İnsert işlemi iki kez ekleniyor sebebini bulamadım bende insert ederken
+                    //delete ederek işlemin bir kez gerçekleşmesini sağladım.
                     detailViewModel.insertCoin(coinData)
                     detailViewModel.deleteCoin(coinData)
 

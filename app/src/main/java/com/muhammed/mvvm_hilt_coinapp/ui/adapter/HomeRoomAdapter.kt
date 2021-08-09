@@ -36,7 +36,8 @@ class HomeRoomAdapter: RecyclerView.Adapter<HomeRoomAdapter.HomeRoomViewHolder>(
         holder.bind(favCoinList[position])
         holder.binding.inFavorites.setOnClickListener {
             holder.binding.inFavorites.setImageResource(R.drawable.ic_launcher_star_empty_foreground)
-
+            //Adapter'den veri silme işlemin de bir kaç yöntem denedim ve çözemedim.
+            //Sanırım bu işlemin adapterden olmaması gerekiyor.
             notifyDataSetChanged()
 //            val item = favCoinList[position]
 //            (favCoinList as MutableList).remove(item)
